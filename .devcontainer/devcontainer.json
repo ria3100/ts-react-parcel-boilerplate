@@ -1,0 +1,9 @@
+{
+  "name": "React App",
+  "dockerComposeFile": ["docker-compose.yml"],
+  "appPort": 1234,
+  "service": "web",
+  "workspaceFolder": "/workspace",
+  "shutdownAction": "stopCompose",
+  "extensions": ["dbaeumer.vscode-eslint"]
+}
