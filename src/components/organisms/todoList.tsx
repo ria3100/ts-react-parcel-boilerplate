@@ -1,31 +1,30 @@
+import { css } from 'emotion'
+import React, { useCallback } from 'react'
 
-import { css } from 'emotion';
-import React, { useCallback } from 'react';
-
-import { useMappedState, useDispatch } from 'redux-react-hook';
+import { useMappedState, useDispatch } from 'redux-react-hook'
 import todoOperations from '../../modules/todo/operations'
 
-import { bindActionCreators } from 'redux';
+import { bindActionCreators } from 'redux'
 
 export default () => {
   const { todoCount, list } = useMappedState(
     useCallback(
       (state: any) => ({
         todoCount: state.todo.todos.length,
-        list: state.todo.todos
+        list: state.todo.todos,
       }),
-      [],
-    ),
-  );
+      []
+    )
+  )
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   const { addTodo } = bindActionCreators(
     {
       addTodo: todoOperations.addTodo,
     },
-    dispatch,
-  );
+    dispatch
+  )
 
   return (
     <div>
@@ -36,11 +35,9 @@ export default () => {
         })}
       </ul>
       <div className={styles.lastUpdated} />
-      <span onClick={() => addTodo('foo')}>
-        addTodo
-      </span>
+      <span onClick={() => addTodo('foo')}>addTodo</span>
     </div>
-  );
+  )
 }
 
 const styles = {
@@ -54,4 +51,4 @@ const styles = {
   todos: css`
     padding-left: 0;
   `,
-};
+}

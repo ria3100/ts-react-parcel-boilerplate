@@ -1,13 +1,12 @@
 import React from 'react'
 
-import { TodoList, Main, Footer, Navigation } from '../organisms'
+import { Navigation, Footer, Login } from '../organisms'
 
 export default () => {
   return (
     <div className="App">
-      <Main />
       <Navigation />
-      <TodoList />
+      <Login />
       <Footer />
     </div>
   )

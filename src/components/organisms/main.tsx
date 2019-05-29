@@ -1,10 +1,22 @@
 import React from 'react'
 
-import { Hero, HeroHeader, Nav, NavLeft, NavItem, NavCenter, NavRight, HeroBody,Title, Container, Icon } from 'bloomer'
+import {
+  Hero,
+  HeroHeader,
+  Nav,
+  NavLeft,
+  NavItem,
+  NavCenter,
+  NavRight,
+  HeroBody,
+  Title,
+  Container,
+  Icon,
+} from 'bloomer'
 
 export default () => {
   return (
-    <Hero isColor='info' isSize='medium'>
+    <Hero isColor="info" isSize="medium">
       <HeroHeader>
         <Nav>
           <NavLeft>
@@ -26,11 +38,10 @@ export default () => {
       </HeroHeader>
 
       <HeroBody>
-        <Container hasTextAlign='centered'>
+        <Container hasTextAlign="centered">
           <Title>Title</Title>
         </Container>
       </HeroBody>
-
     </Hero>
   )
 }

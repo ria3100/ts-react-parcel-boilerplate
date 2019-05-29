@@ -1,11 +1,7 @@
 {
-  "name": "ts−react-parcel-boilerplate",
+  "name": "react-parcel-boilerplate",
   "version": "2.0.0",
   "description": "Typescript with React, using parcel bundler",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ria3100/ts−react-parcel-boilerplate"
-  },
   "author": "Ria",
   "license": "MIT",
   "main": "src/index.tsx",
@@ -51,9 +47,18 @@
     "Parcel"
   ],
   "dependencies": {
+    "@emotion/core": "^10.0.10",
+    "@emotion/styled": "^10.0.11",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-emotion": "^10.0.9",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-runtime": "^6.26.0",
     "bloomer": "^0.6.5",
     "bulma": "^0.7.5",
     "emotion": "^10.0.9",
+    "firebase": "^6.1.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-helmet": "^5.2.1",
@@ -61,9 +66,13 @@
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-promise-middleware": "^6.1.0",
-    "redux-react-hook": "^3.3.2"
+    "redux-react-hook": "^3.3.2",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.0.0-0",
+    "@babel/plugin-transform-runtime": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
     "@types/jest": "^24.0.11",
     "@types/node": "^11.13.6",
     "@types/react": "^16.8.14",
