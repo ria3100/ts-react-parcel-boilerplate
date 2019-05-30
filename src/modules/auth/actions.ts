@@ -1,43 +1,73 @@
 import types from './types'
 
-import firebase, { providerTwitter } from '../../firebase.config.js'
+import firebase, {
+  providerGoogle,
+  providerFacebook,
+  providerTwitter,
+} from '../../firebase.config.js'
 
-export const handleSignUpEmail = (email, password) => {
+export const signupWithEmailAndPassword = (email, password) => {
   return async dispatch => {
     await firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
-      .then(result => dispatch(handleSignUp(result)))
+      // .then(result => dispatch(handleSignUp(result)))
       .catch(error => console.log(error))
   }
 }
 
-export const handleSignUp = text => ({
-  type: types.SIGNUP,
-  id: '',
-  text,
-})
+export const loginWithEmailAndPassword = (email, password) => {
+  return async dispatch => {
+    await firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .catch(error => console.log(error))
+  }
+}
+
+export const loginWithGoogle = () => {
+  return async dispatch => {
+    await firebase
+      .auth()
+      .signInWithPopup(providerGoogle)
+      .then(result => dispatch(setUserData(firebase.auth().currentUser)))
+      .catch(error => console.log(error))
+  }
+}
+
+export const loginWithFacebook = () => {
+  return async dispatch => {
+    await firebase
+      .auth()
+      .signInWithPopup(providerFacebook)
+      .then(result => dispatch(setUserData(firebase.auth().currentUser)))
+      .catch(error => console.log(error))
+  }
+}
 
 export const loginWithTwitter = () => {
   return async dispatch => {
-    await firebase.auth().signInWithRedirect(providerTwitter)
     await firebase
       .auth()
-      .getRedirectResult()
-      .then(result => dispatch(handleLogin(result)))
+      .signInWithPopup(providerTwitter)
+      .then(result => dispatch(setUserData(firebase.auth().currentUser)))
       .catch(error => console.log(error))
   }
 }
 
-export const handleLogin = (text: any) => ({
-  type: types.LOGIN,
-  id: '',
-  text,
-})
+export const setUserData = (user: any) => {
+  const { displayName, email, photoURL, emailVerified } = user
+  return {
+    type: types.SET_USERDATA,
+    user: { displayName, email, photoURL, emailVerified },
+  }
+}
 
 export default {
-  handleSignUpEmail,
-  handleSignUp,
+  signupWithEmailAndPassword,
+  loginWithEmailAndPassword,
+  loginWithGoogle,
+  loginWithFacebook,
   loginWithTwitter,
-  handleLogin,
+  setUserData,
 }

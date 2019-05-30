@@ -1,14 +1,40 @@
-import React, { useState } from 'react'
-import { css } from '@emotion/core'
+/** @jsx jsx */
+import { useState, useCallback } from 'react'
+import { Link } from 'react-router-dom'
+import { useMappedState } from 'redux-react-hook'
+import { css, jsx } from '@emotion/core'
 
-import { Navbar, NavbarBrand } from 'bloomer'
+import {
+  Navbar,
+  NavbarBrand,
+  NavbarStart,
+  NavbarEnd,
+  NavbarItem,
+  Button,
+} from 'bloomer'
+
+import { NavbarLogin, NavbarUserMenu } from '../molecules'
 
 export default () => {
-  // const [isOpen, setIsOpen] = useState(false)
+  const { user } = useMappedState(
+    useCallback(
+      (state: any) => ({
+        user: state.auth.userData,
+      }),
+      []
+    )
+  )
+
   return (
     <header css={style}>
       <Navbar className="is-dark is-fixed-top">
         <NavbarBrand />
+        <NavbarStart>
+          <NavbarItem>
+            <Link to="/">logo</Link>
+          </NavbarItem>
+        </NavbarStart>
+        {user ? <NavbarUserMenu user={user} /> : <NavbarLogin />}
       </Navbar>
     </header>
   )

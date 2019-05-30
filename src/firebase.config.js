@@ -11,6 +11,7 @@ firebase.initializeApp({
   messagingSenderId: 'XXXXX',
   appId: 'XXXXX',
 })
+firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
 
 export const providerGoogle = new firebase.auth.GoogleAuthProvider()
 export const providerFacebook = new firebase.auth.FacebookAuthProvider()

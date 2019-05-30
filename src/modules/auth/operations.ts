@@ -1,13 +1,19 @@
 import actions from './actions'
 
-const handleSignUpEmail = actions.handleSignUpEmail
-const handleSignUp = actions.handleSignUp
+const signupWithEmailAndPassword = actions.signupWithEmailAndPassword
+// const handleSignUp = actions.handleSignUp
+const loginWithEmailAndPassword = actions.loginWithEmailAndPassword
+const loginWithGoogle = actions.loginWithGoogle
+const loginWithFacebook = actions.loginWithFacebook
 const loginWithTwitter = actions.loginWithTwitter
-const handleLogin = actions.handleLogin
+const setUserData = actions.setUserData
 
 export default {
-  handleSignUpEmail,
-  handleSignUp,
+  signupWithEmailAndPassword,
+  // handleSignUp,
+  loginWithEmailAndPassword,
+  loginWithGoogle,
+  loginWithFacebook,
   loginWithTwitter,
-  handleLogin,
+  setUserData,
 }

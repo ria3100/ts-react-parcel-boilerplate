@@ -15,11 +15,6 @@
     "type-check": "tsc --noEmit",
     "type-check:watch": "tsc --noEmit --watch"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run prettify && npm run test"
-    }
-  },
   "engines": {
     "node": ">= 8.11.0",
     "npm": ">= 6.0.0"
@@ -47,6 +42,7 @@
     "Parcel"
   ],
   "dependencies": {
+    "@babel/runtime": "7.0.0-rc.3",
     "@emotion/core": "^10.0.10",
     "@emotion/styled": "^10.0.11",
     "babel-core": "^6.26.3",
@@ -59,11 +55,13 @@
     "bulma": "^0.7.5",
     "emotion": "^10.0.9",
     "firebase": "^6.1.0",
-    "react": "^16.2.0",
+    "react": "^16.8.3",
     "react-dom": "^16.2.0",
+    "react-emotion": "^10.0.0",
     "react-helmet": "^5.2.1",
+    "react-redux": "^7.0.3",
     "react-router-dom": "^5.0.0",
-    "redux": "^4.0.1",
+    "redux": "^2.0.0 || ^3.0.0 || ^4.0.0-0",
     "redux-logger": "^3.0.6",
     "redux-promise-middleware": "^6.1.0",
     "redux-react-hook": "^3.3.2",

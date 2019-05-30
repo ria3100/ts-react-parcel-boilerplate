@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Section, Container, Title, Subtitle } from 'bloomer'
-import { Navigation, Footer, LoginBox } from '../organisms'
+import { Navigation, Footer, SignupBox } from '../organisms'
 
 export default () => {
   return (
@@ -9,8 +9,8 @@ export default () => {
       <Navigation />
       <Section>
         <Container>
-          <Title>Login</Title>
-          <LoginBox />
+          <Title>Signup</Title>
+          <SignupBox />
         </Container>
       </Section>
 
