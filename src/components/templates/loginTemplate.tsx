@@ -1,11 +1,13 @@
-import React from 'react'
+/** @jsx jsx */
+import { Fragment } from 'react'
+import { css, jsx } from '@emotion/core'
 
-import { Section, Container, Title, Subtitle } from 'bloomer'
+import { Section, Container, Title } from 'bloomer'
 import { Navigation, Footer, LoginBox } from '../organisms'
 
 export default () => {
   return (
-    <div className="App">
+    <Fragment>
       <Navigation />
       <Section>
         <Container>
@@ -13,8 +15,7 @@ export default () => {
           <LoginBox />
         </Container>
       </Section>
-
       <Footer />
-    </div>
+    </Fragment>
   )
 }

@@ -1,7 +1,7 @@
-import React from 'react'
-import { css } from '@emotion/core'
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core'
 
-import { Footer, Container, Content, Columns, Column, Icon } from 'bloomer'
+import { Footer, Container, Content, Columns, Column } from 'bloomer'
 
 export default () => {
   return (
@@ -9,23 +9,9 @@ export default () => {
       <Container>
         <Content>
           <Columns>
-            <Column>
-              <p>
-                Made with
-                <Icon hasTextColor="danger" className="fa fa-heart" />
-                by <a>Algus Dark</a>
-              </p>
-            </Column>
+            <Column>Footer</Column>
           </Columns>
-          <Content isSize="small">
-            <p>
-              The source code is licensed under <a target="_blank">MIT</a>.
-            </p>
-            <p>
-              The website content is licensed under{' '}
-              <a target="_blank">CC ANS 4.0</a>.
-            </p>
-          </Content>
+          <Content isSize="small">Footer</Content>
         </Content>
       </Container>
     </Footer>
@@ -33,5 +19,5 @@ export default () => {
 }
 
 const style = css({
-  background: '#333',
+  background: '#ccc',
 })

@@ -38,7 +38,7 @@ export default () => {
             <Label>Name</Label>
             <Control>
               <Input
-                value={state.email}
+                value={state.name}
                 type="text"
                 onChange={e => setState({ ...state, name: e.target.value })}
               />

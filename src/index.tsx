@@ -2,20 +2,19 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import { StoreContext } from 'redux-react-hook'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { PersistGate } from 'redux-persist/integration/react'
 
-import routes from './routes'
-import store from './modules'
+import store, { persistor } from './modules'
+
+import Routes from './routes'
 
 import './assets/scss/style.scss'
 
 ReactDOM.render(
   <StoreContext.Provider value={store}>
-    <Router>
-      {routes.map(route => (
-        <Route key={route.path} {...route} />
-      ))}
-    </Router>
+    <PersistGate loading={null} persistor={persistor}>
+      <Routes />
+    </PersistGate>
   </StoreContext.Provider>,
   document.getElementById('root')
 )

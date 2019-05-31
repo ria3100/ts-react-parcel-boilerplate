@@ -25,7 +25,6 @@ export default () => {
   const [state, setState] = useState({ email: '', password: '' })
 
   const dispatch = useDispatch()
-
   const {
     loginWithEmailAndPassword,
     loginWithGoogle,
@@ -58,7 +57,7 @@ export default () => {
               <Input
                 value={state.password}
                 type="text"
-                onChange={e => setState({ ...state, email: state.email })}
+                onChange={e => setState({ ...state, password: e.target.value })}
               />
             </Control>
           </Field>

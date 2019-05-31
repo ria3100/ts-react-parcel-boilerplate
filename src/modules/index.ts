@@ -1,16 +1,31 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import logger from 'redux-logger'
 import thunk from 'redux-thunk'
+import { persistReducer, persistStore } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
 
-import todoReducer from './todo'
 import AuthReducer from './auth'
 
 const reducers = {
-  todo: todoReducer,
   auth: AuthReducer,
 }
 
-export default ((initialState = {}) => {
+const persistConfig = {
+  key: 'root',
+  storage,
+  // whitelist: ['todos'],
+  // blacklist: ['visibilityFilter'],
+}
+
+const store = ((initialState = {}) => {
   const rootReducer = combineReducers(reducers)
-  return createStore(rootReducer, initialState, applyMiddleware(thunk, logger))
+  const persistedReducer = persistReducer(persistConfig, rootReducer)
+  return createStore(
+    persistedReducer,
+    initialState,
+    applyMiddleware(thunk, logger)
+  )
 })()
+
+export const persistor = persistStore(store)
+export default store

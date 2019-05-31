@@ -6,56 +6,89 @@ import firebase, {
   providerTwitter,
 } from '../../firebase.config.js'
 
-export const signupWithEmailAndPassword = (email, password) => {
+const signupWithEmailAndPassword = (name, email, password) => {
   return async dispatch => {
     await firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
-      // .then(result => dispatch(handleSignUp(result)))
+      .then(async () => {
+        const user = firebase.auth().currentUser
+        if (!user) return
+        await user.updateProfile({ displayName: name }).then(() => {
+          dispatch(setUserData(user))
+        })
+      })
       .catch(error => console.log(error))
   }
 }
 
-export const loginWithEmailAndPassword = (email, password) => {
+const loginWithEmailAndPassword = (email, password) => {
   return async dispatch => {
     await firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
+      .then(() => dispatch(setUserData(firebase.auth().currentUser)))
       .catch(error => console.log(error))
   }
 }
 
-export const loginWithGoogle = () => {
+const loginWithGoogle = () => {
   return async dispatch => {
     await firebase
       .auth()
       .signInWithPopup(providerGoogle)
-      .then(result => dispatch(setUserData(firebase.auth().currentUser)))
+      .then(() => dispatch(setUserData(firebase.auth().currentUser)))
       .catch(error => console.log(error))
   }
 }
 
-export const loginWithFacebook = () => {
+const loginWithFacebook = () => {
   return async dispatch => {
     await firebase
       .auth()
       .signInWithPopup(providerFacebook)
-      .then(result => dispatch(setUserData(firebase.auth().currentUser)))
+      .then(() => dispatch(setUserData(firebase.auth().currentUser)))
       .catch(error => console.log(error))
   }
 }
 
-export const loginWithTwitter = () => {
+const loginWithTwitter = () => {
   return async dispatch => {
     await firebase
       .auth()
       .signInWithPopup(providerTwitter)
-      .then(result => dispatch(setUserData(firebase.auth().currentUser)))
+      .then(() => dispatch(setUserData(firebase.auth().currentUser)))
       .catch(error => console.log(error))
   }
 }
 
-export const setUserData = (user: any) => {
+const setCurrentUserData = () => {
+  return async dispatch => {
+    await firebase.auth().onAuthStateChanged(user => {
+      if (!user) return
+      dispatch(setUserData(firebase.auth().currentUser))
+    })
+  }
+}
+
+const logoutUser = () => {
+  return async dispatch => {
+    await firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        dispatch(setUserData(null))
+      })
+  }
+}
+
+const setUserData = (user: any) => {
+  if (!user)
+    return {
+      type: types.SET_USERDATA,
+      user: null,
+    }
+
   const { displayName, email, photoURL, emailVerified } = user
   return {
     type: types.SET_USERDATA,
@@ -69,5 +102,7 @@ export default {
   loginWithGoogle,
   loginWithFacebook,
   loginWithTwitter,
+  setCurrentUserData,
+  logoutUser,
   setUserData,
 }

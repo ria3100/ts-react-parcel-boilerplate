@@ -1,26 +1,9 @@
 @charset "utf-8";
 
-// Web fonts
-@import url('https://fonts.googleapis.com/css?family=Product+Sans:400,400i,700,700i');
+// variables
+$primary: #209cee;
+$body-background-color: #eee;
+$input-shadow: none;
 
 // Bulma
 @import '~bulma/bulma.sass';
-
-// variables
-$purple: #8a4d76;
-$pink: #fa7c91;
-$brown: #757763;
-$beige-light: #d0d1cd;
-$beige-lighter: #eff0eb;
-
-$grey-dark: $brown;
-$grey-light: $beige-light;
-$primary: $purple;
-$link: $black;
-$widescreen-enabled: false;
-$fullhd-enabled: false;
-
-$body-background-color: $beige-lighter;
-$control-border-width: 2px;
-$input-border-color: transparent;
-$input-shadow: none;

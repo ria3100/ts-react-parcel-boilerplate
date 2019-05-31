@@ -2,7 +2,11 @@ import { combineReducers } from 'redux'
 import CONSTANTS from './constants'
 import types from './types'
 
-const userData = (state = null, action) => {
+const initalState = {
+  userData: null,
+}
+
+const userData = (state = initalState.userData, action) => {
   switch (action.type) {
     case types.SET_USERDATA:
       return action.user

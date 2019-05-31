@@ -1,29 +1,25 @@
 /** @jsx jsx */
-import { useState, useCallback } from 'react'
+import { useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { useMappedState } from 'redux-react-hook'
 import { css, jsx } from '@emotion/core'
+import { bindActionCreators } from 'redux'
 
-import {
-  Navbar,
-  NavbarBrand,
-  NavbarStart,
-  NavbarEnd,
-  NavbarItem,
-  Button,
-} from 'bloomer'
+import { useDispatch } from 'redux-react-hook'
+
+import { Operations as AuthOperations } from '../../modules/auth'
+
+import { Navbar, NavbarBrand, NavbarStart, NavbarItem } from 'bloomer'
 
 import { NavbarLogin, NavbarUserMenu } from '../molecules'
 
 export default () => {
   const { user } = useMappedState(
-    useCallback(
-      (state: any) => ({
-        user: state.auth.userData,
-      }),
-      []
-    )
+    useCallback((state: any) => ({ user: state.auth.userData }), [])
   )
+
+  const dispatch = useDispatch()
+  const { logoutUser } = bindActionCreators({ ...AuthOperations }, dispatch)
 
   return (
     <header css={style}>
@@ -34,7 +30,11 @@ export default () => {
             <Link to="/">logo</Link>
           </NavbarItem>
         </NavbarStart>
-        {user ? <NavbarUserMenu user={user} /> : <NavbarLogin />}
+        {user ? (
+          <NavbarUserMenu user={user} logout={logoutUser} />
+        ) : (
+          <NavbarLogin />
+        )}
       </Navbar>
     </header>
   )

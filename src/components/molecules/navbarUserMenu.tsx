@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { Link } from 'react-router-dom'
-import { css, jsx } from '@emotion/core'
+import { jsx } from '@emotion/core'
 
 import {
   NavbarEnd,
@@ -10,15 +10,25 @@ import {
   NavbarDivider,
 } from 'bloomer'
 
-export default user => {
+export default props => {
   return (
     <NavbarEnd>
       <NavbarItem hasDropdown isHoverable>
-        <NavbarLink href="/">user</NavbarLink>
+        <NavbarLink href="/">{props.user.displayName}</NavbarLink>
         <NavbarDropdown>
-          <NavbarItem href="/">プロフィール</NavbarItem>
+          <Link className="navbar-item" to="/profile">
+            プロフィール
+          </Link>
           <NavbarDivider />
-          <NavbarItem href="/">ログアウト</NavbarItem>
+          <NavbarItem
+            href="#"
+            onClick={e => {
+              e.preventDefault()
+              props.logout()
+            }}
+          >
+            ログアウト
+          </NavbarItem>
         </NavbarDropdown>
       </NavbarItem>
     </NavbarEnd>

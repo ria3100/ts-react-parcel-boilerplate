@@ -6,6 +6,8 @@ const loginWithEmailAndPassword = actions.loginWithEmailAndPassword
 const loginWithGoogle = actions.loginWithGoogle
 const loginWithFacebook = actions.loginWithFacebook
 const loginWithTwitter = actions.loginWithTwitter
+const setCurrentUserData = actions.setCurrentUserData
+const logoutUser = actions.logoutUser
 const setUserData = actions.setUserData
 
 export default {
@@ -15,5 +17,7 @@ export default {
   loginWithGoogle,
   loginWithFacebook,
   loginWithTwitter,
+  setCurrentUserData,
+  logoutUser,
   setUserData,
 }
