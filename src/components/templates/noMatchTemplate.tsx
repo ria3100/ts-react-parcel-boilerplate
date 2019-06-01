@@ -2,18 +2,20 @@
 import { Fragment } from 'react'
 import { css, jsx } from '@emotion/core'
 
-import { Section, Container } from 'bloomer'
+import { Content, Section, Container } from 'bloomer'
 import { NoMatchMain, Footer, Navigation } from '../organisms'
 
 export default () => {
   return (
     <Fragment>
       <Navigation />
-      <Section>
-        <Container>
-          <NoMatchMain />
-        </Container>
-      </Section>
+      <Content>
+        <Section>
+          <Container>
+            <NoMatchMain />
+          </Container>
+        </Section>
+      </Content>
       <Footer />
     </Fragment>
   )

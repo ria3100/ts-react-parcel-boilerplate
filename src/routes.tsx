@@ -1,28 +1,16 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useCallback } from 'react'
-import { useMappedState, useDispatch } from 'redux-react-hook'
+import { useMappedState } from 'redux-react-hook'
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
 } from 'react-router-dom'
-import { bindActionCreators } from 'redux'
 
-import { Operations as AuthOperations } from '../modules/auth'
-
-import { Home, NoMatch, Login, Signup, Profile } from '../pages'
+import { Home, NoMatch, Login, Signup, Profile } from './pages'
 
 export default () => {
-  const { setCurrentUserData } = bindActionCreators(
-    { ...AuthOperations },
-    useDispatch()
-  )
-
-  useEffect(() => {
-    setCurrentUserData()
-  }, [])
-
   const { user } = useMappedState(
     useCallback((state: any) => ({ user: state.auth.userData }), [])
   )
